@@ -28,9 +28,10 @@
 
 .logoBackgrounded{
   background-color: #C4E4E1;
-  border-radius: 5px;
+  border-radius: 3px;
   padding-left: 3px;
   padding-right: 3px;
+  margin-left: 2px;
 }
 
 .Navbar .nav-logo {
@@ -39,6 +40,8 @@
   margin: 30px;
   color: #014a49;
   text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
 .Navbar #user {
