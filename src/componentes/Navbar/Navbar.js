@@ -14,7 +14,7 @@ const Navbar = () => {
     <div className="Navbar">
 
       
-        <span className="nav-logo">Cal<span className="cash">cash</span></span>
+        <span className="nav-logo">Med<span className="cash">Lista</span></span>
       
 
 
