@@ -11,7 +11,7 @@ const Navbar = () => {
   return (
     <div className="Navbar">
       <span className="nav-logo">
-        MED LISTA
+        MED<span className="logoBackgrounded"> LISTA </span>
         <span className="miniLogo"></span>
         <img src={miniAureolaLogo} alt="Logo" />
       </span>

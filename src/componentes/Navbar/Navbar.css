@@ -9,7 +9,7 @@
   line-height: 30px;
   font-style: normal;
   position: fixed;
-  top: 0; /*  provavel erro */
+  top: 0;
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -22,8 +22,14 @@
 }
 
 .miniLogo {
-  margin-left: 15px;
+  margin-left: 10px;
 
+}
+
+.logoBackgrounded{
+  background-color: #C4E4E1;
+  border-radius: 5px;
+  margin-left: 3px;
 }
 
 .Navbar .nav-logo {
@@ -98,8 +104,6 @@
   .Navbar .nav-logo,
   .Navbar .nav-logo {
     font-size: 27px;
-    background-color: #C4E4E1;
-    border-radius: 5px;
   }
 }
 
