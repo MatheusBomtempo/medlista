@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import "./Selects.css";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
-
-
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
 function Selects({ placeholder, data }) {
   const [filteredData, setFilteredData] = useState([]);

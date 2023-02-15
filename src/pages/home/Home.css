@@ -1,19 +1,18 @@
-.App{
-    background-color: rgb(239, 239, 239);
-    min-height: 100vh;
+.App {
+  background-color: rgb(239, 239, 239);
+  min-height: 100vh;
 }
 
-.tamanho{
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.tamanho {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.aurea1{
-    position: absolute;
-    top: -20px;
-    z-index: -1;
+.aurea1 {
+  position: absolute;
+  top: -20px;
+  z-index: -1;
 }
 
 /* .textInput{
@@ -64,11 +63,9 @@
 }
  */
 
-
-
-#lupa{
-    margin-top: 22px;
-    margin-left: 15px;
-    height: 1.3rem;
-    color: #014A49;
+#lupa {
+  margin-top: 22px;
+  margin-left: 15px;
+  height: 1.3rem;
+  color: #014a49;
 }

@@ -1,11 +1,11 @@
-.tudo{
-    margin-top: 5%;
-    background-color: #E9F1F1;
-    padding: 5% 0; 
+.tudo {
+  margin-top: 5%;
+  background-color: #e9f1f1;
+  padding: 5% 0;
 }
 
-.enviar{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+.enviar {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }

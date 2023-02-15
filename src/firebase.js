@@ -1,9 +1,8 @@
-
 import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 
-import {getAuth, GoogleAuthProvider} from 'firebase/auth'
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 // const firebaseConfig = {
 //   apiKey: "AIzaSyDZPnDGx2rdFAhUprGZfiPhGvlkBjwrt9w",
@@ -22,13 +21,11 @@ const firebaseConfig = {
   storageBucket: "medlista2-cebb8.appspot.com",
   messagingSenderId: "951456512169",
   appId: "1:951456512169:web:02be837a83f9d8097991b8",
-  measurementId: "G-SRNBGQD34E"
+  measurementId: "G-SRNBGQD34E",
 };
-
 
 const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
-export const db  = getFirestore(app);
-
+export const db = getFirestore(app);

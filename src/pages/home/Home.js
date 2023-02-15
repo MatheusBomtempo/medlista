@@ -1,34 +1,28 @@
-import './Home.css';
+import "./Home.css";
 
-import Navbar from '../../componentes/Navbar/Navbar'
-import aureola1 from '../../imgs/aurela.svg'
-import { Container, Row, Col, Form, Input } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
+import Navbar from "../../componentes/Navbar/Navbar";
+import aureola1 from "../../imgs/aurela.svg";
+import { Container, Row, Col, Form, Input } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 // import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import InputGroup from "react-bootstrap/InputGroup";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-import Selects from '../../componentes/Select/Selects'
-
-
+import Selects from "../../componentes/Select/Selects";
 
 function Home() {
-    return (
+  return (
+    <div>
+      <div className="aurea1 ">
+        <img src={aureola1} alt="Logo" />;
+      </div>
 
-        
-        <div>
-          <div className='aurea1 '><img src={aureola1} alt="Logo" />;</div>
+      <Container className="App">
+        <Selects placeholder="Dr. Guilherme Bomtempo"></Selects>
 
-          
-          <Container className="App">
-            
-
-                <Selects placeholder="Dr. Guilherme Bomtempo"></Selects>
-
-             
-            {/* <div className='textInput tamanho'>
+        {/* <div className='textInput tamanho'>
 
               <h2 className='titulo1'>Encontre seu médico:</h2>
               <InputGroup id='input1' className="mb-3">
@@ -46,19 +40,13 @@ function Home() {
                 </InputGroup>
 
             </div> */}
-          
-          </Container>
+      </Container>
 
-          <Container fluid>
-            
-            <Navbar></Navbar>
-
-          </Container>
-
-        </div>
-
-        
-    )
+      <Container fluid>
+        <Navbar></Navbar>
+      </Container>
+    </div>
+  );
 }
 
 export default Home;
