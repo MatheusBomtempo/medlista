@@ -15,10 +15,11 @@ import { db } from '../../firebase'
 
 
 
-const Pesquisa = () => {
+const Pesquisa = (data) => {
 
 
   const [medico, setMedico] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
 
   const todosMedicos = collection(db, "medicos2");
 
@@ -40,7 +41,13 @@ const Pesquisa = () => {
   }, []);
 
 
-
+    const handleFilter = (event) => {
+          const searchWord = event.target.value
+          const newFilter = data.filter((value) => {
+            return value.nome.toLowerCase().includes(searchWord.toLowerCase());
+          });
+          setFilteredData(newFilter);
+    }
     
 
     return(
@@ -51,6 +58,7 @@ const Pesquisa = () => {
                 <FontAwesomeIcon id="lupa" icon={faMagnifyingGlass} />
                   <Form.Control
                     id='input2'
+                    onChange={handleFilter}
                     placeholder="Dr. Guilherme Bomtempo"
                     aria-label="doutores"
                     aria-describedby="basic-addon2"
@@ -62,10 +70,10 @@ const Pesquisa = () => {
                   </InputGroup>
             </div>
 
-            
+          {filteredData.length != 0 &&  (
             <div className='resultados'>
                 
-                  {medico.map((medicos2) => (
+                  {filteredData.map((medicos2) => (
                       <div className='box'>
                         <div className='flexfoto'>
                             <div className='foto'>
@@ -91,12 +99,11 @@ const Pesquisa = () => {
                                 <h3>Convênios:<span className='espacinho'>{medicos2.convênio}</span></h3>
                           </div>
                       </div> 
-))}
+))};
+
               </div>
-           
 
-
-
+                  )};
 
 
           </Container>
