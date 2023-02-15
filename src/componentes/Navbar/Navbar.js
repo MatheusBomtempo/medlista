@@ -1,22 +1,20 @@
 import React, { useState } from "react";
 // import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import "./Navbar.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
-
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import miniAureolaLogo from "../../imgs/miniAureolaLogo.svg";
+import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="Navbar">
-
-      
-        <span className="nav-logo">Med<span className="cash">Lista</span></span>
-      
-
+      <span className="nav-logo">
+        MED LISTA
+        <span className="miniLogo"></span>
+        <img src={miniAureolaLogo} alt="Logo" />
+      </span>
 
       <div className={`nav-items ${isOpen && "open"}`}>
         <a href="#principal">INICIO</a>
@@ -25,17 +23,17 @@ const Navbar = () => {
 
         <a href="#contatos">SOBRE</a>
 
-        <a href="#login"><FontAwesomeIcon id="user" icon={faCircleUser} /></a>
+        <a href="#login">
+          <FontAwesomeIcon id="user" icon={faCircleUser} />
+        </a>
       </div>
-
 
       <div
         className={`nav-toggle ${isOpen && "open"}`}
-        onClick={() => setIsOpen(!isOpen)} >
-
+        onClick={() => setIsOpen(!isOpen)}
+      >
         <div className="bar"></div>
       </div>
-
     </div>
   );
 };
