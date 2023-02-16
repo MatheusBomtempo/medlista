@@ -26,7 +26,7 @@ function Home() {
       <h2 className="titulo2">Médicos recomendados</h2>
 
       <div className="medicosRecomendados">
-        <Space direction="responsive" size={30}>
+        <Space direction="horizontal" size={30}>
           <Card title="Psiquiatra" className="tituloCard">
             <Row>
               <Col span={12}>
