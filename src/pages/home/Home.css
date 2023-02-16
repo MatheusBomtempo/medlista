@@ -15,6 +15,38 @@
   z-index: -1;
 }
 
+.titulo2{
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 2.5rem;
+}
+
+.medicosRecomendados{
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  border-radius: 50%;
+}
+
+.avatar{
+  width: 90px;
+  height: 90px;
+}
+
+.nomeMedico{
+  font-size: 20px;
+  font-family: Montserrat;
+  color: #014A49;
+}
+
+.textoCard{
+  text-align: start;
+  padding-top: 30px;
+  font-family: Montserrat;
+  color: #014A49;
+  font-size: 16px;
+}
+
 /* .textInput{
     display: flex;
     flex-direction: column;

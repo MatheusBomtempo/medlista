@@ -12,8 +12,7 @@ const Navbar = () => {
     <div className="Navbar">
       <span className="nav-logo">
         MED<span className="logoBackgrounded">LISTA</span>
-        <span className="miniLogo"></span>
-        <img src={miniAureolaLogo} alt="Logo" />
+        <img className="miniLogo" src={miniAureolaLogo} alt="Logo" />
       </span>
 
       <div className={`nav-items ${isOpen && "open"}`}>
