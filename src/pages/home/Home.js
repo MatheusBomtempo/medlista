@@ -26,11 +26,8 @@ function Home() {
       <h2 className="titulo2">Médicos recomendados</h2>
 
       <div className="medicosRecomendados">
-        <Space direction="responsive" size={25}>
-          <Card
-            title="Psiquiatra"
-            style={{ width: 360, textAlign: "center", borderRadius: "50px" }}
-          >
+        <Space size={[25, 25]} wrap style={{alignContent:"center"}}>
+          <Card title="Psiquiatra" className="tituloCard">
             <Row>
               <Col span={12}>
                 <Avatar
@@ -48,10 +45,7 @@ function Home() {
               <p>Locais: Ibiapaba, Santa Casa, SAMU</p>
             </div>
           </Card>
-          <Card
-            title="Psiquiatra"
-            style={{ width: 360, textAlign: "center", borderRadius: "50px" }}
-          >
+          <Card title="Psiquiatra" className="tituloCard">
             <Row>
               <Col span={12}>
                 <Avatar
@@ -69,10 +63,43 @@ function Home() {
               <p>Locais: Ibiapaba, Santa Casa, SAMU</p>
             </div>
           </Card>
-          <Card
-            title="Psiquiatra"
-            style={{ width: 360, textAlign: "center", borderRadius: "50px" }}
-          >
+          <Card title="Psiquiatra" className="tituloCard">
+            <Row>
+              <Col span={12}>
+                <Avatar
+                  className="avatar"
+                  src={<img src={fotoMedico} alt="avatar" />}
+                />
+              </Col>
+              <Col className="nomeMedico" span={12}>
+                Dr. Guilherme Bomtempo
+              </Col>
+            </Row>
+
+            <div className="textoCard">
+              <p>Contatos: (32)98805-7932</p>
+              <p>Locais: Ibiapaba, Santa Casa, SAMU</p>
+            </div>
+          </Card>
+          <Card title="Psiquiatra" className="tituloCard">
+            <Row>
+              <Col span={12}>
+                <Avatar
+                  className="avatar"
+                  src={<img src={fotoMedico} alt="avatar" />}
+                />
+              </Col>
+              <Col className="nomeMedico" span={12}>
+                Dr. Guilherme Bomtempo
+              </Col>
+            </Row>
+
+            <div className="textoCard">
+              <p>Contatos: (32)98805-7932</p>
+              <p>Locais: Ibiapaba, Santa Casa, SAMU</p>
+            </div>
+          </Card>
+          <Card title="Psiquiatra" className="tituloCard">
             <Row>
               <Col span={12}>
                 <Avatar
