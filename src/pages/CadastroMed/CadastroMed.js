@@ -16,8 +16,8 @@ import {
 } from "antd";
 import { Container, Row, Col } from "react-bootstrap";
 import { useEffect, useState } from "react";
-import Navbar from "../../componentes/Navbar/Navbar";
-import { db } from "../../firebase";
+import Navbar from "../../componentes/Navbar/Navbar1";
+import { database } from "../../firebase";
 import { getDocs, collection, addDoc } from "firebase/firestore";
 
 const { Option } = Select;
@@ -34,7 +34,7 @@ const CadastroMed = () => {
 
   const [medico, setMedico] = useState([]);
 
-  const todosMedicos = collection(db, "medicos2");
+  const todosMedicos = collection(database, "medicos2");
 
   useEffect(() => {
     const getTodosMedicos = async () => {

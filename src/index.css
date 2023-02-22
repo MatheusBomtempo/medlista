@@ -1,4 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap");
+/* montserrat josefin epilogue */
+
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&family=Josefin+Sans:wght@300;500;600&family=Montserrat:wght@200;300;400;500;600&display=swap');
+
+/* font-family: 'Epilogue', sans-serif;
+font-family: 'Josefin Sans', sans-serif;
+font-family: 'Montserrat', sans-serif; */
 
 body {
   margin: 0;
@@ -10,6 +16,6 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family:  Montserrat, source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }

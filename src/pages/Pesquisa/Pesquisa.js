@@ -10,23 +10,23 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { Container } from "react-bootstrap";
 import { getDocs, collection } from "firebase/firestore";
-import { db } from "../../firebase";
+import { database } from "../../firebase";
 
-const Pesquisa = (data) => {
+const Pesquisa = () => {
   const [medico, setMedico] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
 
-  const todosMedicos = collection(db, "medicos2");
+  const todosMedicos = collection(database, "medicos2");
 
   useEffect(() => {
     const getTodosMedicos = async () => {
       try {
         const data = await getDocs(todosMedicos);
-        const filteredData = data.docs.map((doc) => ({
+        const medico = data.docs.map((doc) => ({
           ...doc.data(),
           id: doc.id,
         }));
-        setMedico(filteredData);
+        setMedico(medico);
       } catch (err) {
         console.error(err);
       }
@@ -36,16 +36,20 @@ const Pesquisa = (data) => {
 
   const handleFilter = (event) => {
     const searchWord = event.target.value;
-    const newFilter = data.filter((value) => {
-      return value.nome.toLowerCase().includes(searchWord.toLowerCase());
+    const newFilter = medico.filter((medicos2) => {
+      return medicos2.nome.toLowerCase().includes(searchWord.toLowerCase());
     });
     setFilteredData(newFilter);
   };
 
+  
+
+ 
+
   return (
     <Container className="">
       <div className="textInput tamanho">
-        <InputGroup id="input1" className="mb-3">
+        <InputGroup id="input1" className="mb-3" onChange={handleFilter}>
           <FontAwesomeIcon id="lupa" icon={faMagnifyingGlass} />
           <Form.Control
             id="input2"
@@ -59,7 +63,7 @@ const Pesquisa = (data) => {
           </Button>
         </InputGroup>
       </div>
-      {filteredData.length != 0 && (
+      {filteredData.length != 0 &&(
         <div className="resultados">
           {filteredData.map((medicos2) => (
             <div className="box">
@@ -103,10 +107,11 @@ const Pesquisa = (data) => {
           ))}
           ;
         </div>
-      )}
-      ;
+)};
+
     </Container>
   );
 };
 
 export default Pesquisa;
+

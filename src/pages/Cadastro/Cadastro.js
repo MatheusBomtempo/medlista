@@ -1,6 +1,6 @@
 import "./Home.css";
 
-import Navbar1 from "../../componentes/Navbar/Navbar1";
+import Navbar from "../../componentes/Navbar/Navbar1";
 import aureola1 from "../../imgs/aurela.svg";
 import fotoMedico from "../../imgs/fotoMedico.png";
 import { Container, Row, Col, Form, Input } from "react-bootstrap";
@@ -16,7 +16,7 @@ import { Avatar, Card, Space } from "antd";
 
 function Home() {
   return (
-    <div >
+    <div>
       <div className="aurea1 ">
         <img src={aureola1} alt="Logo" />
       </div>
@@ -106,9 +106,9 @@ function Home() {
             </div>
       </Container> */}
 
-      
-        <Navbar1></Navbar1>
-      
+      <Container fluid>
+        <Navbar></Navbar>
+      </Container>
     </div>
   );
 }

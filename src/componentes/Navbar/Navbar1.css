@@ -1,0 +1,54 @@
+
+
+.barra {
+  background-color: #F1F6F8;
+  box-shadow: 3px 5px 24px rgba(0, 0, 0, 0.092)  ;
+  
+}
+/* Modify brand and text color */
+
+.logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.med{
+  color: black;
+  font-family: Josefin Sans,sans-serif;
+}
+
+.lista{
+  font-family: Josefin Sans,sans-serif;
+  color: black;
+  margin:5px 5px 5px 1px;
+  background-color: #C4E4E1;
+  padding: 0px 3px;
+}
+.me-auto a,
+.nav-rigth a{
+  color: #014A49;
+  background-color: none;
+  font-family: Montserrat, san-serif;
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+a:hover{
+  background-color: none;
+}
+
+.cadastro{
+  padding: 3px;
+  outline: 2px solid black;
+  border-radius: 30px;
+}
+
+#user{
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+
+

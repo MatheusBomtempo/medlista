@@ -6,7 +6,7 @@ import CadastroMed from "./pages/CadastroMed/CadastroMed";
 import Home from "./pages/home/Home";
 import { Auth } from "./componentes/auth/Auth";
 import Pesquisa from "./pages/Pesquisa/Pesquisa";
-
+import Navbar from 'react-bootstrap/Navbar'
 function App() {
   return (
     <Router>
