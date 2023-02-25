@@ -5,7 +5,40 @@
   box-shadow: 3px 5px 24px rgba(0, 0, 0, 0.092)  ;
   
 }
-/* Modify brand and text color */
+
+#collasible-nav-dropdown{
+  background-color: transparent;
+  color: #014A49;
+}
+
+#collasible-nav-dropdown:hover{
+  color: #8da1a1;
+  
+}
+
+#ini:hover{
+  color: #8da1a1;
+  
+}
+
+#user{
+  color: #014A49;
+}
+
+#user:hover{
+  color: #8da1a1;
+}
+
+#login{
+  display: none;
+  color: #014A49;
+}
+
+#login:hover{
+  color: #8da1a1;
+}
+
+
 
 .logo{
   display: flex;
@@ -29,20 +62,25 @@
 .me-auto a,
 .nav-rigth a{
   color: #014A49;
-  background-color: none;
+  background-color: transparent;
   font-family: Montserrat, san-serif;
   font-weight: 500;
   font-size: 1.2rem;
 }
 
 a:hover{
-  background-color: none;
+  background-color: transparent;
+}
+
+.nav-link{
+  background-color: transparent;
 }
 
 .cadastro{
-  padding: 3px;
   outline: 2px solid black;
   border-radius: 30px;
+  margin: 0;
+  padding: 0;
 }
 
 #user{
@@ -50,5 +88,52 @@ a:hover{
   height: 1.8rem;
 }
 
+
+
+.navbar-dark{
+  --bs-navbar-active-color: #8f5454;
+}
+  
+  .nav-links:hover{
+  background-color:transparent;
+  color: rgb(255, 0, 0);
+  }
+
+  .nav-links a:hover{
+    color: aqua; 
+  }
+  .navbar-dark .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(1, 74, 73, 0.98)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+.nav-links:hover,
+.navbar-dark:hover,
+.navbar-nav:hover,
+.navbar-nav:active{
+  color:   #014A49;
+}
+
+
+@media (max-width:992px){
+
+  html{
+    font-size: 80%;
+  }
+  .cadastro{
+    outline: none;
+
+  }
+
+  #userclass{
+    padding: 0;
+  }
+
+  #user{
+    display: none;
+  }
+
+  #login{
+    display: block;
+  }
+}
 
 

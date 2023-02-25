@@ -7,14 +7,24 @@ import {
   signOut,
 } from "firebase/auth";
 
-import { PlusOutlined } from "@ant-design/icons";
-import { Button, Form, Input } from "antd";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faCircleUser, faLock } from "@fortawesome/free-solid-svg-icons";
+import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+
+// import { PlusOutlined } from "@ant-design/icons";
+// import { Button, Form, Input } from "antd";
 import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
-export const Auth = () => {
+import { InfoCircleOutlined, UserOutlined } from '@ant-design/icons';
+import { Input, Tooltip, Space, Button } from 'antd';
+
+export const Auth = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [passwordVisible, setPasswordVisible] = React.useState(false);
 
   const singIn = async () => {
     try {
@@ -40,12 +50,81 @@ export const Auth = () => {
     }
   };
 
+  
+
   return (
-    <Container>
-      <Row className="justify-content-center">
-        <Col xs={12} md={6} xl={5}>
-          <div className="">
-            <Form.Item label="email:">
+    
+          <form className="caixa">
+
+          <Input
+            placeholder={props.placeholderemail}
+            className="inputt"
+            prefix={<FontAwesomeIcon id="icons" className="site-form-item-icon" icon={faEnvelope} />}
+            suffix={
+          <Tooltip title="Extra information">
+            <InfoCircleOutlined
+            style={{
+              color: 'rgba(0,0,0,.45)' }}
+             />
+            </Tooltip>
+          }
+          />
+
+
+
+            <Input
+            placeholder={props.placeholderuser}
+            className="inputt"
+            prefix={<FontAwesomeIcon id="icons" className="site-form-item-icon" icon={faCircleUser} />}
+            suffix={
+          <Tooltip title="Extra information">
+            <InfoCircleOutlined
+            style={{
+              color: 'rgba(0,0,0,.45)' }}
+             />
+            </Tooltip>
+          }
+          />
+
+
+          <Input.Password
+            placeholder={props.placeholderpass}
+            visibilityToggle={{
+              visible: passwordVisible,
+              onVisibleChange: setPasswordVisible,
+            }}
+            className="inputt"
+            prefix={<FontAwesomeIcon id="icons" className="site-form-item-icon" icon={faLock} />}
+            suffix={
+          <Tooltip title="Extra information">
+            <InfoCircleOutlined
+            style={{
+              color: 'rgba(0,0,0,.45)' }}
+             />
+            </Tooltip>
+          }
+          /> 
+
+
+          <Input.Password
+            placeholder={props.placeholderpass2}
+            visibilityToggle={{
+              visible: passwordVisible,
+              onVisibleChange: setPasswordVisible,
+            }}
+            className="inputt"
+            prefix={<FontAwesomeIcon id="icons" className="site-form-item-icon" icon={faLock} />}
+            suffix={
+          <Tooltip title="Extra information">
+            <InfoCircleOutlined
+            style={{
+              color: 'rgba(0,0,0,.45)' }}
+             />
+            </Tooltip>
+          }
+          /> 
+
+            {/* <Form.Item label="email:">
               <Input
                 size="large"
                 placeholder="Insira seu Email"
@@ -72,10 +151,8 @@ export const Auth = () => {
 
             <Form.Item className="enviar">
               <Button onClick={logOut}>Sair</Button>
-            </Form.Item>
-          </div>
-        </Col>
-      </Row>
-    </Container>
+            </Form.Item> */}
+          </form>
+      
   );
 };

@@ -12,28 +12,31 @@ function Navbar1() {
   return (
     <Navbar className='barra'  fixed="top" collapseOnSelect expand="lg" variant="dark">
       <Container>
-        <Navbar.Brand href="#home" className='logo'><span className='med'>MED</span><span className='lista'>LISTA</span> <img src={miniaureola} alt="Logo" /></Navbar.Brand>
+        <Navbar.Brand href="#home" className='logo nav-links'><span className='med'>MED</span><span className='lista'>LISTA</span> <img src={miniaureola} alt="Logo" /></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link className='item' href="#features">Início</Nav.Link>
-            <Nav.Link className='item' href="#pricing">Sobre</Nav.Link>
-            <NavDropdown title="Especialidades" id="collasible-nav-dropdown">
+            <Nav.Link id='ini' className='item nav-links' href="#features">Início</Nav.Link>
+            <Nav.Link id='ini' className='item nav-links'  href="#pricing">Sobre</Nav.Link>
+            <NavDropdown id='ini' title="Especialidades" id="collasible-nav-dropdown">
               <NavDropdown.Item className='item' href="#action/3.1">Oftalmologista</NavDropdown.Item>
               <NavDropdown.Item className='item' href="#action/3.2">
                 Geriatra
               </NavDropdown.Item>
               <NavDropdown.Item className='item' href="#action/3.3">Cardiologista</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item className='item' href="#action/3.4">
+              <NavDropdown.Item  className='item' href="#action/3.4">
                 Outras
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Nav className='nav-rigth'>
-            <Nav.Link className='cadastro' href="#deets">Cadastre-se</Nav.Link>
-            <Nav.Link className='item' eventKey={2} href="#memes">
+            <Nav.Link id='ini' className='cadastro nav-links' href="#deets">Cadastre-se</Nav.Link>
+            <Nav.Link  id='userclass' className='item nav-links' eventKey={2} href="#memes">
               <FontAwesomeIcon id="user" icon={faCircleUser} />
+            </Nav.Link>
+            <Nav.Link  id='login' className='item nav-links' eventKey={2} href="#memes">
+              Login
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

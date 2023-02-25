@@ -1,0 +1,38 @@
+.inputt{
+    border-radius: 100px;
+    background-color: #D9D9D9;
+    height: 45px;
+    
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ .ant-input-password/*,
+.ant-space-item*/{ 
+    border-radius: 100px;
+    background-color: #D9D9D9;
+    height: 45px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.inputt input::placeholder{
+    font-family: montserrat, sans-serif;
+    font-size: 1rem;
+    padding-left: 9px;
+    
+}
+
+.inputt input, 
+.ant-input-password{
+    background-color: #D9D9D9;
+}
+
+#icons{
+    margin-left: 5px;
+    color:#014A49 ;
+}
