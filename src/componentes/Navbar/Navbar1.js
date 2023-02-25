@@ -18,7 +18,7 @@ function Navbar1() {
           <Nav className="me-auto">
             <Nav.Link id='ini' className='item nav-links' href="#features">Início</Nav.Link>
             <Nav.Link id='ini' className='item nav-links'  href="#pricing">Sobre</Nav.Link>
-            <NavDropdown id='ini' title="Especialidades" id="collasible-nav-dropdown">
+            <NavDropdown title="Especialidades" id="collasible-nav-dropdown">
               <NavDropdown.Item className='item' href="#action/3.1">Oftalmologista</NavDropdown.Item>
               <NavDropdown.Item className='item' href="#action/3.2">
                 Geriatra
@@ -31,10 +31,21 @@ function Navbar1() {
             </NavDropdown>
           </Nav>
           <Nav className='nav-rigth'>
-            <Nav.Link id='ini' className='cadastro nav-links' href="#deets">Cadastre-se</Nav.Link>
-            <Nav.Link  id='userclass' className='item nav-links' eventKey={2} href="#memes">
+
+
+            <NavDropdown id='collasible-nav-dropdown-2' title={<span><FontAwesomeIcon icon={faCircleUser} /></span>} >
+              <NavDropdown.Item className='item' href="#action/3.1">Cadastrar-se</NavDropdown.Item>
+              <NavDropdown.Item className='item' href="#action/3.2">
+                Logar
+              </NavDropdown.Item>
+                <NavDropdown.Divider />
+              <NavDropdown.Item className='item' href="#action/3.3">Sair</NavDropdown.Item>
+              
+            </NavDropdown>
+
+            {/* <Nav.Link  id='userclass' className='item nav-links' eventKey={2} href="#memes">
               <FontAwesomeIcon id="user" icon={faCircleUser} />
-            </Nav.Link>
+            </Nav.Link> */}
             <Nav.Link  id='login' className='item nav-links' eventKey={2} href="#memes">
               Login
             </Nav.Link>

@@ -3,18 +3,43 @@
 .barra {
   background-color: #F1F6F8;
   box-shadow: 3px 5px 24px rgba(0, 0, 0, 0.092)  ;
-  
+
 }
 
 #collasible-nav-dropdown{
   background-color: transparent;
   color: #014A49;
+  margin-right: 20px;
 }
 
 #collasible-nav-dropdown:hover{
   color: #8da1a1;
+  background-color: transparent;
   
 }
+
+#collasible-nav-dropdown-2{
+  background-color: transparent;
+  color: #014A49;
+  margin-right: 20px;
+
+}
+
+#collasible-nav-dropdown-2:hover{
+  color: #8da1a1;
+  background-color: transparent;
+  
+}
+
+.dropdown-menu[data-bs-popper] {
+  top: 100%;
+  left: -60px!important; 
+}
+
+#log{
+  width: 200px;
+}
+
 
 #ini:hover{
   color: #8da1a1;
@@ -111,6 +136,7 @@ a:hover{
 .navbar-nav:active{
   color:   #014A49;
 }
+
 
 
 @media (max-width:992px){

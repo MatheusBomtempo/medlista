@@ -5,12 +5,25 @@ import aureola1 from "../../imgs/aurela.svg";
 
 import { Container, Row, Col, Form, Input } from "react-bootstrap";
 import { Auth } from "../../componentes/auth/Auth";
+import { auth } from "../../firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { useState } from "react";
+
+
+
 
 
 function Cadastro() {
+
+    const [user, setUser] = useState({});
+
+  onAuthStateChanged(auth, (currentUser) => {
+    setUser(currentUser)
+  })
+
   return (
-    
-      
+    <>
+      <Navbar></Navbar>
 
       <Container>
         <Row >  
@@ -18,6 +31,7 @@ function Cadastro() {
         <div className="containerr">
             <div className="innerCont">
                 <h1 className="titulo">Cadastro</h1>
+                <h2>{user.email}</h2>
                     <div className="separador">
                         <div className="left">
                             <Auth
@@ -27,13 +41,18 @@ function Cadastro() {
                             placeholderpass2='piroca'
                             />
                         </div>
-                        <div>
-                        <Auth
-                            placeholderemail='piroca'
-                            placeholderuser='piroca'
-                            placeholderpass='piroca'
-                            placeholderpass2='piroca'
-                            />
+                        <div className="right">
+                            <button type="button" className="login-with-google-btn" >
+                            Registrar-se com Google
+                            </button>
+
+                            <button type="button" className="login-with-google-btn" id="face" >
+                            Registrar-se com Facebook
+                            </button>
+
+                            {/* <button type="button" className="login-with-google-btn" disabled>
+                            Sign in with Google
+                            </button> */}
                         </div>
                     </div>
             </div>
@@ -49,7 +68,9 @@ function Cadastro() {
     //   <Container fluid>
     //     <Navbar></Navbar>
     //   </Container>
-    
+
+    </>
+
   );
 }
 

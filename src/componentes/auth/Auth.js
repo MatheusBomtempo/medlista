@@ -1,13 +1,15 @@
 import React from "react";
 import "./Auth.css";
+import { Link } from 'react-router-dom'
 import { auth, googleProvider } from "../../firebase";
 import {
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
   signInWithPopup,
   signOut,
 } from "firebase/auth";
 
-
+import ReCAPTCHA from "react-google-recaptcha";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faCircleUser, faLock } from "@fortawesome/free-solid-svg-icons";
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
@@ -15,48 +17,60 @@ import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 // import { PlusOutlined } from "@ant-design/icons";
 // import { Button, Form, Input } from "antd";
 import { useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+// import { Container, Row, Col } from "react-bootstrap";
 
-import { InfoCircleOutlined, UserOutlined } from '@ant-design/icons';
-import { Input, Tooltip, Space, Button } from 'antd';
+import { InfoCircleOutlined} from '@ant-design/icons';
+import { Input, Tooltip } from 'antd';
 
 export const Auth = (props) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  
 
-  const [passwordVisible, setPasswordVisible] = React.useState(false);
+  const key = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
 
-  const singIn = async () => {
-    try {
-      await createUserWithEmailAndPassword(auth, email, password);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  function onChange() {
+    console.log("changed");
+    setCaptchaIsDone(true)
+  }
 
-  const singInWithGoogle = async () => {
-    try {
-      await signInWithPopup(auth, googleProvider);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const logOut = async () => {
-    try {
-      await signOut(auth);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  const [captchaIsDone,setCaptchaIsDone] = useState(false);
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
 
   
 
+  
+  const [passwordVisible, setPasswordVisible] = React.useState(false);
+
+
+
+  const register = async () => {
+
+    if(setCaptchaIsDone == true){
+
+    try {
+      const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
+      console.log(user)
+    } catch (error) {
+      console.error(error.message);
+    }
+
+  }else{
+    console.log('deu errado')
+  }
+  };
+
+
+  
+  
+
   return (
+
     
-          <form className="caixa">
+    
+      <form className="caixa">
 
           <Input
+            onChange={(e) => {setRegisterEmail(e.target.value)}}
             placeholder={props.placeholderemail}
             className="inputt"
             prefix={<FontAwesomeIcon id="icons" className="site-form-item-icon" icon={faEnvelope} />}
@@ -88,6 +102,7 @@ export const Auth = (props) => {
 
 
           <Input.Password
+            onChange={(e) => {setRegisterPassword(e.target.value)}}
             placeholder={props.placeholderpass}
             visibilityToggle={{
               visible: passwordVisible,
@@ -124,35 +139,27 @@ export const Auth = (props) => {
           }
           /> 
 
-            {/* <Form.Item label="email:">
-              <Input
-                size="large"
-                placeholder="Insira seu Email"
-                type="text"
-                onChange={(e) => setEmail(e.target.value)}
+          <div className="captcha">
+            <ReCAPTCHA
+                sitekey={key}
+                onChange={onChange}
               />
-            </Form.Item>
+          </div>
 
-            <Form.Item label="senha:">
-              <Input
-                size="large"
-                placeholder="Insira sua Senha"
-                type="password"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </Form.Item>
-            <Form.Item className="enviar">
-              <Button onClick={singIn}>Entrar</Button>
-            </Form.Item>
+          <div className="divbtn">
+            <button onClick={register}>
+              Cadastrar
+            </button>
+          </div>
 
-            <Form.Item className="enviar">
-              <Button onClick={singInWithGoogle}>Entrar com o Google</Button>
-            </Form.Item>
+          <div className="pergunta">
+            <Link to="/">
+              <p>Já possui <span>login?</span></p>
+            </Link>
+          </div>
 
-            <Form.Item className="enviar">
-              <Button onClick={logOut}>Sair</Button>
-            </Form.Item> */}
-          </form>
+
+      </form>
       
   );
 };

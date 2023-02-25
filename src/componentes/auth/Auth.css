@@ -36,3 +36,58 @@
     margin-left: 5px;
     color:#014A49 ;
 }
+
+.captcha{
+    margin-top: 30px;
+    transition: 0.2s;
+}
+
+.divbtn{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+
+}
+
+.divbtn button{
+    font-family: montserrat, sans-serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    padding: 8px 25px;
+    background-color: #014A49;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 10px;
+    transition: background-color .3s, box-shadow .3s;
+}
+
+.divbtn button:hover{
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25);
+
+}
+
+.caixa .pergunta{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    color: #25BEA9;
+    transition: 0.2s;
+}
+
+.caixa .pergunta a,
+.caixa .pergunta a:hover{
+    background-color: transparent;
+    text-decoration: none;
+    color: #25BEA9;
+    font-size: 1rem;
+    font-family: Epilogue, sans-serif;
+    font-weight: 500;
+}
+
+.caixa .pergunta a:hover{
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.092);
+}
+
+.caixa .pergunta span{
+    color: #014A49;
+}
