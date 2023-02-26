@@ -35,12 +35,25 @@ export const Auth = (props) => {
   const [captchaIsDone,setCaptchaIsDone] = useState(false);
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
-
-  
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   
   const [passwordVisible, setPasswordVisible] = React.useState(false);
 
+
+  const validate_password = () => {
+    if(confirmPassword != registerPassword){
+      console.log('suas senhas estão diferente')
+      return
+    }
+  }
+
+
+  const handleRegister = () => {
+    if(confirmPassword == registerPassword){
+      return
+    }
+  }
 
 
   const register = async () => {
@@ -102,6 +115,7 @@ export const Auth = (props) => {
 
 
           <Input.Password
+            value={registerPassword}
             onChange={(e) => {setRegisterPassword(e.target.value)}}
             placeholder={props.placeholderpass}
             visibilityToggle={{
@@ -122,6 +136,8 @@ export const Auth = (props) => {
 
 
           <Input.Password
+            value={confirmPassword}
+            onChange={(e) => {setConfirmPassword(e.target.value)}}
             placeholder={props.placeholderpass2}
             visibilityToggle={{
               visible: passwordVisible,
