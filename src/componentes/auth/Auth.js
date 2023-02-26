@@ -21,6 +21,7 @@ import { useState } from "react";
 
 import { InfoCircleOutlined} from '@ant-design/icons';
 import { Input, Tooltip } from 'antd';
+import { stringLength } from "@firebase/util";
 
 export const Auth = (props) => {
   
@@ -32,33 +33,61 @@ export const Auth = (props) => {
     setCaptchaIsDone(true)
   }
 
-  const [captchaIsDone,setCaptchaIsDone] = useState(false);
+  const [captchaIsDone,setCaptchaIsDone] = useState('');
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [erroSenha,setErroSenha] = useState("");
+  const [passwordsMatch, setPasswordsMatch] = useState(true);
+  const [passwordTooShort, setPasswordTooShort] = useState(false);
 
   
   const [passwordVisible, setPasswordVisible] = React.useState(false);
 
+    
+  const handleRegisterPassword = (e) => {
+    setRegisterPassword(e.target.value);
+    setPasswordsMatch(e.target.value === confirmPassword);
+    setPasswordTooShort(registerPassword.length <= 6);
+  };
 
-  const validate_password = () => {
-    if(confirmPassword != registerPassword){
-      console.log('suas senhas estão diferente')
-      return
-    }
-  }
+  const handleConfirmPassword = (e) => {
+    setConfirmPassword(e.target.value);
+    setPasswordsMatch(e.target.value === registerPassword);
+  };
+
+  // const matchPass = () => {
+  //   if(passwordsMatch == true){
+  //     setErroSenha('senhas não correspodem')
+  //   }
+  // }
+
+  // const validationPassword = (e) => {
 
 
-  const handleRegister = () => {
-    if(confirmPassword == registerPassword){
-      return
-    }
-  }
+  //   if(confirmPassword != registerPassword){
+  //     setErroSenha('senhas não batem')
+  //   }else{
+  //     setErroSenha('')
+  //   }
+    
+  //  }
 
+
+
+  
 
   const register = async () => {
 
-    if(setCaptchaIsDone == true){
+    if(!captchaIsDone){
+   alert('verifique o captcha')
+  }else if(confirmPassword != registerPassword){
+    setErroSenha('senhas não batem')
+  }else if(registerPassword.length <= 6){
+    setErroSenha('senha deve ter mais de 6 caracteres')
+  }
+  
+  else{
 
     try {
       const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
@@ -67,8 +96,7 @@ export const Auth = (props) => {
       console.error(error.message);
     }
 
-  }else{
-    console.log('deu errado')
+    setErroSenha('')
   }
   };
 
@@ -80,7 +108,10 @@ export const Auth = (props) => {
 
     
     
-      <form className="caixa">
+      <form className="caixa" onSubmit={register}>
+
+        <div>
+        </div>
 
           <Input
             onChange={(e) => {setRegisterEmail(e.target.value)}}
@@ -116,7 +147,7 @@ export const Auth = (props) => {
 
           <Input.Password
             value={registerPassword}
-            onChange={(e) => {setRegisterPassword(e.target.value)}}
+            onChange={handleRegisterPassword}
             placeholder={props.placeholderpass}
             visibilityToggle={{
               visible: passwordVisible,
@@ -133,11 +164,12 @@ export const Auth = (props) => {
             </Tooltip>
           }
           /> 
+          
 
 
           <Input.Password
             value={confirmPassword}
-            onChange={(e) => {setConfirmPassword(e.target.value)}}
+            onChange={handleConfirmPassword}
             placeholder={props.placeholderpass2}
             visibilityToggle={{
               visible: passwordVisible,
@@ -155,15 +187,23 @@ export const Auth = (props) => {
           }
           /> 
 
+          <div className="matchsenha">
+            {passwordsMatch ? '' : <p>As senhas não correspondem.</p>}
+
+            {passwordTooShort && <p>A senha deve ter pelo menos 6 caracteres.</p>}
+            </div>
+
+            
+
           <div className="captcha">
             <ReCAPTCHA
                 sitekey={key}
-                onChange={onChange}
+                onChange={(value) => {setCaptchaIsDone(value);}}
               />
           </div>
 
           <div className="divbtn">
-            <button onClick={register}>
+            <button type="submit">
               Cadastrar
             </button>
           </div>
