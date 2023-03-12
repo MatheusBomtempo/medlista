@@ -1,18 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Auth.css";
 import { Link } from 'react-router-dom'
-import { auth, googleProvider } from "../../firebase";
+import { auth, googleProvider, firestore, database } from "../../firebase";
 import {
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-  signInWithPopup,
-  signOut,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword
 } from "firebase/auth";
-
+import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 import ReCAPTCHA from "react-google-recaptcha";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faCircleUser, faLock } from "@fortawesome/free-solid-svg-icons";
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+import { UserAuth } from '../../contexts/contextsAuth/AuthContext';
 
 // import { PlusOutlined } from "@ant-design/icons";
 // import { Button, Form, Input } from "antd";
@@ -21,20 +21,25 @@ import { useState } from "react";
 
 import { InfoCircleOutlined} from '@ant-design/icons';
 import { Input, Tooltip } from 'antd';
-import { stringLength } from "@firebase/util";
+
+
 
 export const Auth = (props) => {
-  
 
+  const { createUser } = UserAuth();
+  const navigate = useNavigate();
+  
+  
   const key = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
 
   function onChange() {
-    console.log("changed");
+    console.log("captcha validado");
     setCaptchaIsDone(true)
   }
 
   const [captchaIsDone,setCaptchaIsDone] = useState('');
   const [registerEmail, setRegisterEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [erroSenha,setErroSenha] = useState("");
@@ -43,12 +48,31 @@ export const Auth = (props) => {
 
   
   const [passwordVisible, setPasswordVisible] = React.useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleClick = () => {
+    
+    if(!captchaIsDone){
+      alert('verifique o captcha')
+      }else if(confirmPassword != registerPassword){
+        setErroSenha('senhas não batem')
+      }else if(registerPassword.length < 5){
+        setErroSenha('senha deve ter mais de 6 caracteres')
+      }else{
+    setIsLoading(true);
+    // Perform some asynchronous task here
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  }
+    
+  };
 
     
   const handleRegisterPassword = (e) => {
     setRegisterPassword(e.target.value);
     setPasswordsMatch(e.target.value === confirmPassword);
-    setPasswordTooShort(registerPassword.length <= 6);
+    setPasswordTooShort(registerPassword.length < 5);
   };
 
   const handleConfirmPassword = (e) => {
@@ -56,47 +80,56 @@ export const Auth = (props) => {
     setPasswordsMatch(e.target.value === registerPassword);
   };
 
-  // const matchPass = () => {
-  //   if(passwordsMatch == true){
-  //     setErroSenha('senhas não correspodem')
-  //   }
-  // }
+  const register = async (e) => {
 
-  // const validationPassword = (e) => {
-
-
-  //   if(confirmPassword != registerPassword){
-  //     setErroSenha('senhas não batem')
-  //   }else{
-  //     setErroSenha('')
-  //   }
-    
-  //  }
-
-
-
-  
-
-  const register = async () => {
+    e.preventDefault();
 
     if(!captchaIsDone){
-   alert('verifique o captcha')
-  }else if(confirmPassword != registerPassword){
-    setErroSenha('senhas não batem')
-  }else if(registerPassword.length <= 6){
-    setErroSenha('senha deve ter mais de 6 caracteres')
-  }
+    alert('verifique o captcha')
+    }else if(confirmPassword != registerPassword){
+      setErroSenha('senhas não batem')
+    }else if(registerPassword.length < 5){
+      setErroSenha('senha deve ter mais de 6 caracteres')
+    }
   
   else{
+    createUser(auth,registerEmail, registerPassword)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      const db = getFirestore();
+      const userRef = doc(db, 'users', user.uid);
+      setDoc(userRef, { username }, { merge: true });
 
-    try {
-      const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
-      console.log(user)
-    } catch (error) {
-      console.error(error.message);
-    }
+      navigate('/CadastroMedico');
 
-    setErroSenha('')
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      if (errorCode === 'auth/email-already-in-use') {
+        alert('E-mail já cadastrado. Tente fazer login ou utilize outro endereço de e-mail.');
+      } else {
+        console.log(errorCode, errorMessage);
+      }
+    });
+
+
+
+
+    // try {
+    //   const { userr } = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
+    //   console.log(userr)
+      
+    //   await database.collection('user').doc(userr.uid).set({
+    //     username,
+    //     registerEmail,
+    //   });
+    //   console.log('Dados do usuário salvos no Firestore!');
+    // } catch (error) {
+    //   console.error('Ocorreu um erro ao criar o usuário:', error);
+    // }
+
+    // setErroSenha('')
   }
   };
 
@@ -110,8 +143,6 @@ export const Auth = (props) => {
     
       <form className="caixa" onSubmit={register}>
 
-        <div>
-        </div>
 
           <Input
             onChange={(e) => {setRegisterEmail(e.target.value)}}
@@ -129,9 +160,11 @@ export const Auth = (props) => {
           />
 
 
-
+                
             <Input
             placeholder={props.placeholderuser}
+            value={username}
+            onChange={(e) => setUsername((e.target.value))}
             className="inputt"
             prefix={<FontAwesomeIcon id="icons" className="site-form-item-icon" icon={faCircleUser} />}
             suffix={
@@ -202,9 +235,9 @@ export const Auth = (props) => {
               />
           </div>
 
-          <div className="divbtn">
+          <div className="divbtn" onClick={handleClick} disabled={isLoading}>
             <button type="submit">
-              Cadastrar
+            {isLoading ? <div class="lds-ring"><div></div><div></div><div></div><div></div></div> : 'Cadastrar'}
             </button>
           </div>
 

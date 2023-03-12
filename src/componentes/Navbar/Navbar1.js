@@ -3,16 +3,23 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import "./Navbar1.css";
+import { useNavigate } from 'react-router-dom';
+
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import miniaureola from "../../imgs/miniAureolaLogo.svg";
 
 function Navbar1() {
+
+  const navigate = useNavigate();
+
+  
+
   return (
     <Navbar className='barra'  fixed="top" collapseOnSelect expand="lg" variant="dark">
       <Container>
-        <Navbar.Brand href="#home" className='logo nav-links'><span className='med'>MED</span><span className='lista'>LISTA</span> <img src={miniaureola} alt="Logo" /></Navbar.Brand>
+        <Navbar.Brand href="#home"  className='logo nav-links' ><span className='med'>MED</span><span className='lista'>LISTA</span> <img src={miniaureola} alt="Logo" /></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">

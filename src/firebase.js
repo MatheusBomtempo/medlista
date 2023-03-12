@@ -2,7 +2,10 @@ import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+
+import 'firebase/firestore';
+
 
 // const firebaseConfig = {
 //   apiKey: "AIzaSyDZPnDGx2rdFAhUprGZfiPhGvlkBjwrt9w",
@@ -25,8 +28,32 @@ const firebaseConfig = {
 };
 
 
+
+
 const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 export const auth = getAuth(app);
-export const googleProvider = new GoogleAuthProvider();
 export const database = getFirestore(app);
+
+export const googleProvider = new GoogleAuthProvider();
+
+export const signInWithGoogle = () => {
+  signInWithPopup(auth, googleProvider)
+    .then((result) => {
+      const nome = result.user.displayName;
+      const email = result.user.email;
+      const fotoPerfil = result.user.photoURL;
+
+      localStorage.setItem("nome", nome);
+      localStorage.setItem("email", email);
+      localStorage.setItem("fotoPerfil", fotoPerfil);
+      console.log(localStorage.setItem("fotoPerfil"));
+    })
+    .catch((error) => {
+
+    });
+};
+
+
+
+

@@ -20,6 +20,7 @@ import Navbar from "../../componentes/Navbar/Navbar1";
 import { database } from "../../firebase";
 import { getDocs, collection, addDoc } from "firebase/firestore";
 
+
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
